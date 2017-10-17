@@ -7,7 +7,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class BirthdayUpdaterComponent implements OnInit {
 
-  @Output() changeBirthday: EventEmitter<any> = new EventEmitter();
+  @Output() changeBirthday: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {}
 
