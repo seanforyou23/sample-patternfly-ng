@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { SharedDataService } from '../shared-data.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -8,28 +8,24 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
   thing1: number;
   thing2: number;
+  result: number;
+  activeBirthday: string;
 
-  constructor() {
+  // @Input('birthday') bday: string;
+
+  constructor(private dataService:SharedDataService) {
     this.thing1 = 20;
     this.thing2 = 10;
-
   }
 
-  // which of these "addNumbers" is "correct"?
   private addNumbers(): void {
     console.log(this.thing1 + this.thing2);
+    this.result += this.thing1 + this.thing2;
   }
 
-  // addNumbers = function () {
-  //   console.log(this.thing1 + this.thing2);
-  // }
-
   ngOnInit() {
-    // setTimeout(function () {
-    //   console.log('about to update this.thing1');
-    //   this.thing1 = 100;
-    //   console.log(this.thing1);
-    // }, 2000);
+    this.result = this.thing1 + this.thing2;
+      this.activeBirthday = this.dataService.getData('Mike');
   }
 
 }

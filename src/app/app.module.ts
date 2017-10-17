@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { DatetimeComponent } from './datetime/datetime.component';
 import { FooterComponent } from './footer/footer.component';
 import { SharedDataService } from './shared-data.service';
+import { BirthdayUpdaterComponent } from './birthday-updater/birthday-updater.component';
 
 @NgModule({
   // declarations is where one specifies modules for dependency injection
   declarations: [
     AppComponent,
     DatetimeComponent,
-    FooterComponent
+    FooterComponent,
+    BirthdayUpdaterComponent
   ],
   imports: [
     BrowserModule,

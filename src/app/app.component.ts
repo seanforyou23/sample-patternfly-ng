@@ -15,7 +15,7 @@ export class AppComponent {
   // title will be available as {{title}} in the view template
   title = 'First NG App';
 
-  activeBirthday:string;
+  activeBirthday: string;
 
   constructor(private dataService:SharedDataService) {}
 
