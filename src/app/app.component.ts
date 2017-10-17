@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SharedDataService } from './shared-data.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,16 @@ import { Component } from '@angular/core';
 // Make this component available to the rest of the the application
 // and define variables and functions that are made available to the component template
 export class AppComponent {
+
   // title will be available as {{title}} in the view template
   title = 'First NG App';
+
+  activeBirthday:string;
+
+  constructor(private dataService:SharedDataService) {}
+
+  ngOnInit() {
+    this.activeBirthday = this.dataService.getData('Mike');
+  }
+
 }

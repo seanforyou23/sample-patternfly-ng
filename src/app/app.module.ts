@@ -7,16 +7,23 @@ import { NgModule } from '@angular/core';
 import { NotificationModule } from 'patternfly-ng';
 // the root app component
 import { AppComponent } from './app.component';
+// custom components/services
+import { DatetimeComponent } from './datetime/datetime.component';
+import { FooterComponent } from './footer/footer.component';
+import { SharedDataService } from './shared-data.service';
 
 @NgModule({
+  // declarations is where one specifies modules for dependency injection
   declarations: [
-    AppComponent
+    AppComponent,
+    DatetimeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     NotificationModule
   ],
-  providers: [],
+  providers: [SharedDataService],
   bootstrap: [AppComponent]
 })
 
