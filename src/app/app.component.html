@@ -1,30 +1,43 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
+<div class="container">
+  <h1 style="text-align:center;">
+    Welcome to <img width="30" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="> {{title}}!
   </h1>
-  <p>Active Birthday: {{activeBirthday}}</p>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+
+  <div class="col-xs-12 col-sm-6">
+    <div>
+      <h2>Search Users</h2>
+      <span>{{users}}, etc.</span>
+      <app-birthday-updater (changeBirthday)="handleBirthdayChange($event)"></app-birthday-updater>
+    </div>
+  </div>
+
+
+  <div class="col-xs-12 col-sm-6">
+    <div>
+      <h2>Results for: {{searchString}}</h2>
+      <p *ngIf="foundBirthday">Birthday found for {{searchString}}:
+        <strong>{{foundBirthday}}</strong>
+      </p>
+
+      <p *ngIf="!foundBirthday">No birthday found for this user.</p>
+    </div>
+  </div>
+
 </div>
 
-<app-birthday-updater></app-birthday-updater>
-
-<pfng-toast-notification
+<!-- <pfng-toast-notification
   [header]="'test header'"
   [message]="'this is a notification'"
   [showClose]="'true'"
   [type]="'success'">
-</pfng-toast-notification>
+</pfng-toast-notification> -->
 
-<!-- <app-datetime></app-datetime> -->
+<!-- <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2> -->
 
-<p>Some other paragraph content</p>
-
-<h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-
-<app-footer>
+<!-- <app-footer>
   <p>Footer paragraph</p>
-  <!-- # required support for content transcluded
+  # requires support for content transcluded
     <app-datetime></app-datetime>
-  -->
-</app-footer>
+
+</app-footer> -->

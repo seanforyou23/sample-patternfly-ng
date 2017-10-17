@@ -5,10 +5,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SharedDataService {
 
-  constructor() { }
+  constructor() {}
 
   birthdays = {
-    'Mike': 'Apr 9',
+    'Michael': 'Apr 9',
     'David': 'Apr 18',
     'Ashley': 'Apr 20',
     'Kerri': 'Apr 25',
@@ -16,8 +16,12 @@ export class SharedDataService {
     'Crystal': 'Feb 2'
   };
 
-  public getData(person):string {
+  public getBirthday(person): string {
     return this.birthdays[person];
+  }
+
+  public getUsers(): string[] {
+    return Object.keys(this.birthdays);
   }
 
 }

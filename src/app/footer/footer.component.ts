@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedDataService } from '../shared-data.service';
 @Component({
   selector: 'app-footer',
@@ -10,8 +10,6 @@ export class FooterComponent implements OnInit {
   thing2: number;
   result: number;
   activeBirthday: string;
-
-  // @Input('birthday') bday: string;
 
   constructor(private dataService:SharedDataService) {
     this.thing1 = 20;
@@ -25,7 +23,14 @@ export class FooterComponent implements OnInit {
 
   ngOnInit() {
     this.result = this.thing1 + this.thing2;
-      this.activeBirthday = this.dataService.getData('Mike');
+      this.activeBirthday = this.dataService.getBirthday('Mike');
+  }
+
+  handleBirthdayChange(event: any) {
+    console.log(event);
+    if (this.dataService.getBirthday(event) !== undefined) {
+      this.activeBirthday = this.dataService.getBirthday(event);
+    }
   }
 
 }

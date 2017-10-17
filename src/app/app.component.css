@@ -1,4 +1,10 @@
 h2 {
-  border: 1px dashed black;
+  border-bottom: 1px dashed black;
+  padding-bottom: 6px;
+}
+
+[class*="col-"] {
+  border: 1px solid #eee;
+  min-height: 18em;
 }
 

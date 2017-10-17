@@ -4,23 +4,34 @@ import { SharedDataService } from './shared-data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  // styles here are scoped to the markup template above
   styleUrls: ['./app.component.css']
 })
 
-// Make this component available to the rest of the the application
-// and define variables and functions that are made available to the component template
 export class AppComponent {
 
-  // title will be available as {{title}} in the view template
-  title = 'First NG App';
-
-  activeBirthday: string;
+  title: string = 'Birthday Lookup';
+  foundBirthday: string;
+  users: string;
+  searchString: string;
 
   constructor(private dataService:SharedDataService) {}
 
   ngOnInit() {
-    this.activeBirthday = this.dataService.getData('Mike');
+
+    Promise.resolve(this.dataService.getUsers())
+      .then((users) => {
+        this.users = users.slice(0, 3).join(', ');
+      }, (err) => {console.warn(err);});
+
   }
 
+  handleBirthdayChange(text: any) {
+    this.searchString = text;
+
+    Promise.resolve(this.dataService.getBirthday(text))
+      .then((birthday) => {
+        this.foundBirthday = (birthday) ? birthday : null;
+      }, (err) => {console.warn(err);});
+
+  }
 }

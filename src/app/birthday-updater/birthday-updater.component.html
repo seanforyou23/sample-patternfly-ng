@@ -1,3 +1,7 @@
 <div>
-  <input type="text" placeholder="Update Birthday" (onchange)="reportBirthday()">
+  <input
+    class="form-control"
+    type="text"
+    placeholder="Enter Username (e.g. Kerri)"
+    (keyup)="onKey($event)">
 </div>

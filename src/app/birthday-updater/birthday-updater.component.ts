@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-birthday-updater',
@@ -7,13 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BirthdayUpdaterComponent implements OnInit {
 
-  constructor() { }
+  @Output() changeBirthday: EventEmitter<any> = new EventEmitter();
 
-  ngOnInit() {
-  }
+  constructor() {}
 
-  public reportBirthdays(): void {
-    console.log('foo');
+  ngOnInit() {}
+
+  onKey(event: any) {
+    this.changeBirthday.emit(event.target.value);
   }
 
 }

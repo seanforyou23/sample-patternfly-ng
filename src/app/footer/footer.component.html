@@ -2,6 +2,6 @@
   {{result}}
   <app-datetime name="foo"></app-datetime>
   <button (click)="addNumbers()">Add Numbers</button>
-  <app-birthday-updater></app-birthday-updater>
+  <app-birthday-updater (changeBirthday)="handleBirthdayChange($event)"></app-birthday-updater>
   <p>Active Birthday: {{activeBirthday}}</p>
 </footer>
