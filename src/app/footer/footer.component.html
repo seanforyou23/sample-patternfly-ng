@@ -1,6 +1,7 @@
 <footer [attr.class]="toLower(activeBirthday)">
   @ViewChild (bg-color)
-  <app-birthday-updater></app-birthday-updater>
-  <div class="info" *ngIf="activeBirthday">Birthstone theme: {{activeBirthday.split(' ')[0]}}</div>
+  <!-- <app-birthday-updater></app-birthday-updater> -->
+  <div class="theme-info" *ngIf="activeBirthday">Birthstone theme: {{activeBirthday.split(' ')[0]}}</div>
   <app-datetime [timestamp]="today"></app-datetime>
+  <input type="text" placeholder="Enter the Observable" class="form-control" (keyup)="handleKeyUp($event)">
 </footer>

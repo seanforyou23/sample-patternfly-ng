@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SharedDataService } from '../shared-data.service';
+import { Observable } from 'rxjs/Observable';
+
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -8,24 +10,34 @@ import { SharedDataService } from '../shared-data.service';
 export class FooterComponent implements OnInit {
   today: Date;
   activeBirthday: string;
+  myObserver: any;
+
+  private inputStream: Observable<Array<number>>;
 
   constructor(private dataService:SharedDataService) {
     this.today = new Date();
   }
 
   ngOnInit() {
-    console.log(this.activeBirthday);
+
+    this.inputStream = new Observable((observer) => {
+      this.myObserver = observer;
+    });
+
+    let subscribe = this.inputStream.subscribe((data) => {
+      console.log(data);
+    }, (err) => {
+      console.warn(err);
+    });
+
   }
 
   toLower(str): string {
     return str ? str.toLowerCase() : false;
   }
 
-  // handleBirthdayChange(event: any) {
-  //   console.log(event);
-  // }
+  handleKeyUp(event: any) {
+    this.myObserver.next(event.target.value);
+  }
 
 }
-
-// shared service data between footer/header
-// event emitter (rxjs)
