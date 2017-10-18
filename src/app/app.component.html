@@ -15,12 +15,12 @@
 
   <div class="col-xs-12 col-sm-6">
     <div>
-      <h2>@Output: Results for: {{searchString}}</h2>
-      <p *ngIf="foundBirthday">Birthday found for {{searchString}}:
-        <strong>{{foundBirthday}}</strong>
+      <h2>@Output: Results for: {{searchStream}}</h2>
+      <p *ngIf="curBday">Birthday found for {{searchStream}}:
+        <strong>{{curBday}}</strong>
       </p>
 
-      <p *ngIf="!foundBirthday">No birthday found for this user.</p>
+      <p *ngIf="!curBday">No birthday found for this user.</p>
     </div>
   </div>
 

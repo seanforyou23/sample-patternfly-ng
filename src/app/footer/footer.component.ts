@@ -1,6 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  EventEmitter,
+  Output } from '@angular/core';
 import { SharedDataService } from '../shared-data.service';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-footer',
@@ -8,11 +12,10 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
+  @Output() changeBirthday: EventEmitter<string> = new EventEmitter<string>();
+
   today: Date;
   activeBirthday: string;
-  myObserver: any;
-
-  private inputStream: Observable<Array<number>>;
 
   constructor(private dataService:SharedDataService) {
     this.today = new Date();
@@ -20,14 +23,12 @@ export class FooterComponent implements OnInit {
 
   ngOnInit() {
 
-    this.inputStream = new Observable((observer) => {
-      this.myObserver = observer;
-    });
+    this.dataService.activeBirthday.subscribe((searchStream) => {
 
-    let subscribe = this.inputStream.subscribe((data) => {
-      console.log(data);
-    }, (err) => {
-      console.warn(err);
+      Promise.resolve(this.dataService.getBirthday(searchStream))
+        .then((data) => {
+          this.changeBirthday.emit(data);
+        }, (err) => {console.warn(err)});
     });
 
   }
@@ -36,8 +37,8 @@ export class FooterComponent implements OnInit {
     return str ? str.toLowerCase() : false;
   }
 
-  handleKeyUp(event: any) {
-    this.myObserver.next(event.target.value);
+  observeKeyUp(event: any) {
+    this.dataService.setActiveBirthday(event.target.value);
   }
 
 }
