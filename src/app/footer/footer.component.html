@@ -1,4 +1,5 @@
-<footer>
+<footer [attr.class]="toLower(activeBirthday)">
+  @ViewChild (bg-color)
   <!-- <button (click)="addNumbers()">Add Numbers</button> -->
   <!-- <app-birthday-updater (changeBirthday)="handleBirthdayChange($event)"></app-birthday-updater> -->
   <app-birthday-updater></app-birthday-updater>

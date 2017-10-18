@@ -14,12 +14,16 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activeBirthday = this.dataService.getBirthday('Michael');
+    console.log(this.activeBirthday);
   }
 
-  handleBirthdayChange(event: any) {
-    console.log(event);
+  toLower(str): string {
+    return str ? str.toLowerCase() : null;
   }
+
+  // handleBirthdayChange(event: any) {
+  //   console.log(event);
+  // }
 
 }
 

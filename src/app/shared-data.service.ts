@@ -8,12 +8,18 @@ export class SharedDataService {
   constructor() {}
 
   birthdays = {
-    'Michael': 'Apr 9',
-    'David': 'Apr 18',
-    'Ashley': 'Apr 20',
-    'Kerri': 'Apr 25',
-    'Heather': 'Jun 26',
-    'Crystal': 'Feb 2'
+    'Janna': 'January 9th',
+    'Crystal': 'February 2nd',
+    'Kerri': 'March 14th',
+    'Michael': 'April 9th',
+    'David': 'May 28th',
+    'Heather': 'June 26th',
+    'Darcy': 'July 19th',
+    'Jessamyn': 'August 30th',
+    'Donnie': 'September 20th',
+    'Red Hat': 'October 31st',
+    'Ashley': 'November 2',
+    'Jesus': 'December 25'
   };
 
   public getBirthday(person): string {

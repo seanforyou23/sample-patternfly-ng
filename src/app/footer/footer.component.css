@@ -1,9 +1,57 @@
 footer {
-  background-color: grey;
+  background-color: lightgrey;
   border: 1px solid black;
   padding: 12px;
   text-align: center;
   margin: 6px 12px;
   color: #fff;
   clear: both;
+}
+
+[class*="january"] {
+  background: #862633;
+}
+
+[class*="february"] {
+  background: #9966cc;
+}
+
+[class*="march"] {
+  background: #7fffd4;
+}
+
+[class*="april"] {
+  background: #fafbf5;
+}
+
+[class*="may"] {
+  background: #50c878;
+}
+
+[class*="june"] {
+  background: #eae0c8;
+}
+
+[class*="july"] {
+  background: #9b111e;
+}
+
+[class*="august"] {
+  background: #a6e86c;
+}
+
+[class*="september"] {
+  background: #0f52ba;
+}
+
+[class*="october"] {
+  background: #142d36;
+}
+
+[class*="november"] {
+  background: #ffc87c;
+}
+
+[class*="december"] {
+  background: #00e5ee;
 }
