@@ -6,6 +6,16 @@ footer {
   margin: 6px 12px;
   color: #fff;
   clear: both;
+  position: relative;
+}
+
+.info {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px 8px;
+  border-left: 1px dashed black;
+  border-bottom: 1px dashed black;
 }
 
 [class*="january"] {
@@ -18,10 +28,12 @@ footer {
 
 [class*="march"] {
   background: #7fffd4;
+  color: #444;
 }
 
 [class*="april"] {
   background: #fafbf5;
+  color: #444;
 }
 
 [class*="may"] {
@@ -30,6 +42,7 @@ footer {
 
 [class*="june"] {
   background: #eae0c8;
+  color: #444;
 }
 
 [class*="july"] {
@@ -45,7 +58,7 @@ footer {
 }
 
 [class*="october"] {
-  background: #142d36;
+  background: #a9c6c2;
 }
 
 [class*="november"] {

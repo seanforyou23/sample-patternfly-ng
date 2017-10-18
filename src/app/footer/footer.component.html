@@ -1,8 +1,6 @@
 <footer [attr.class]="toLower(activeBirthday)">
   @ViewChild (bg-color)
-  <!-- <button (click)="addNumbers()">Add Numbers</button> -->
-  <!-- <app-birthday-updater (changeBirthday)="handleBirthdayChange($event)"></app-birthday-updater> -->
   <app-birthday-updater></app-birthday-updater>
-  <p>Active Birthday: {{activeBirthday}}</p>
+  <div class="info" *ngIf="activeBirthday">Birthstone theme: {{activeBirthday.split(' ')[0]}}</div>
   <app-datetime [timestamp]="today"></app-datetime>
 </footer>

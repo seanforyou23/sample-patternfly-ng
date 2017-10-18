@@ -18,8 +18,8 @@ export class SharedDataService {
     'Jessamyn': 'August 30th',
     'Donnie': 'September 20th',
     'Red Hat': 'October 31st',
-    'Ashley': 'November 2',
-    'Jesus': 'December 25'
+    'Ashley': 'November 4th',
+    'Jesus': 'December 25th'
   };
 
   public getBirthday(person): string {

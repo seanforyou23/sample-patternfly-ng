@@ -18,7 +18,7 @@ export class FooterComponent implements OnInit {
   }
 
   toLower(str): string {
-    return str ? str.toLowerCase() : null;
+    return str ? str.toLowerCase() : false;
   }
 
   // handleBirthdayChange(event: any) {
