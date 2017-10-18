@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { SharedDataService } from './shared-data.service';
 import { FooterComponent } from './footer/footer.component';
 
@@ -8,23 +8,25 @@ import { FooterComponent } from './footer/footer.component';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  @ViewChild(FooterComponent) child;
+  @ViewChild(FooterComponent) footer;
 
-  title: string = 'Birthday Lookup';
+  title = 'Birthday Lookup';
   curBday: string;
   users: string;
   searchStream: string;
 
-  constructor(private dataService:SharedDataService) {}
+  constructor(private dataService: SharedDataService) {}
 
   ngOnInit() {
 
     Promise.resolve(this.dataService.getUsers())
       .then((users) => {
         this.users = users.slice(0, 3).join(', ');
-      }, (err) => {console.warn(err);});
+      }, (err) => {
+        console.warn(err);
+      });
 
 
     // this.dataService.activeBirthday.subscribe((searchStream) => {
@@ -32,7 +34,7 @@ export class AppComponent {
     //     .then((result) => {
     //       if (typeof result === 'string') {
     //         this.curBday = (result) ? result : null;
-    //         this.child.activeBirthday = (result) ? result : null;
+    //         this.footer.activeBirthday = (result) ? result : null;
     //       }
     //     }, (err) => {console.warn(err)});
     // });
@@ -47,10 +49,12 @@ export class AppComponent {
       Promise.resolve(this.dataService.getBirthday(searchStream))
         .then((result) => {
 
-            this.child.activeBirthday = (result) ? result : null;
+            this.footer.activeBirthday = (result) ? result : null;
             this.curBday = result;
 
-        }, (err) => {console.warn(err)});
+        }, (err) => {
+          console.warn(err);
+        });
     });
   }
 
@@ -61,7 +65,9 @@ export class AppComponent {
     Promise.resolve(this.dataService.getBirthday(text))
       .then((birthday) => {
         this.curBday = (birthday) ? birthday : null;
-        this.child.activeBirthday = (birthday) ? birthday : null;
-      }, (err) => {console.warn(err);});
+        this.footer.activeBirthday = (birthday) ? birthday : null;
+      }, (err) => {
+        console.warn(err);
+      });
   }
 }

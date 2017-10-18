@@ -11,6 +11,8 @@ export class DatetimeComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.today);
+  }
 
 }

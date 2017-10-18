@@ -17,7 +17,7 @@ export class FooterComponent implements OnInit {
   today: Date;
   activeBirthday: string;
 
-  constructor(private dataService:SharedDataService) {
+  constructor(private dataService: SharedDataService) {
     this.today = new Date();
   }
 
@@ -28,7 +28,10 @@ export class FooterComponent implements OnInit {
       Promise.resolve(this.dataService.getBirthday(searchStream))
         .then((data) => {
           this.changeBirthday.emit(data);
-        }, (err) => {console.warn(err)});
+
+        }, (err) => {
+          console.warn(err);
+        });
     });
 
   }

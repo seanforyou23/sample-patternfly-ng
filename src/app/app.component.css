@@ -9,3 +9,14 @@ h2 {
   word-wrap: break-word;
 }
 
+.has-results {
+  color: green;
+}
+
+.no-results {
+  color: red;
+}
+
+.search-progress {
+  color: orange;
+}

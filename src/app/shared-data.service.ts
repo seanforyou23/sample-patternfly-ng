@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 // emits metadata associated with this given service
-// let's angular know if it needs to inject other dependencies into this service
+// lets angular know if it needs to inject other dependencies into this service
 @Injectable()
 export class SharedDataService {
 
@@ -30,11 +30,13 @@ export class SharedDataService {
     return this.birthdays[person];
   }
 
+  // public getUsers(): Observable<string[]> {
   public getUsers(): string[] {
+    // return Observable.of(Object.keys(.
     return Object.keys(this.birthdays);
   }
 
-  public setActiveBirthday(name: string): any {
+  public setActiveBirthday(name: string): void {
     this.birthdaySource.next(name);
   }
 
