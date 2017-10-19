@@ -16,6 +16,7 @@ export class FooterComponent implements OnInit {
 
   today: Date;
   activeBirthday: string;
+  searchStream: string;
 
   constructor(private dataService: SharedDataService) {
     this.today = new Date();
@@ -27,8 +28,8 @@ export class FooterComponent implements OnInit {
     return str ? str.toLowerCase() : false;
   }
 
-  observeKeyUp(event: any) {
-    this.dataService.setActiveBirthday(event.target.value);
+  observeModelChange($event: KeyboardEvent) {
+    this.dataService.setActiveBirthday(this.searchStream);
   }
 
 }
