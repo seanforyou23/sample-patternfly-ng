@@ -21,27 +21,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    Promise.resolve(this.dataService.getUsers())
-      .then((users) => {
-        this.users = users.slice(0, 3).join(', ');
-      }, (err) => {
-        console.warn(err);
-      });
+    let users$ = this.dataService.getUsers();
 
+    users$.subscribe((observable) => {
+      this.users = observable.slice(0, 3).join(', ');
+    }, (err) => {
+      console.warn(err);
+    });
 
-    // this.dataService.activeBirthday.subscribe((searchStream) => {
-    //   Promise.resolve(this.dataService.getBirthday(searchStream))
-    //     .then((result) => {
-    //       if (typeof result === 'string') {
-    //         this.curBday = (result) ? result : null;
-    //         this.footer.activeBirthday = (result) ? result : null;
-    //       }
-    //     }, (err) => {console.warn(err)});
-    // });
-
-    // observe changes to a service property
-    // "activeBirthday" is actually the observable, but I'd rather subscribe to
-    // "birthdaySource" - is this ok?
     this.dataService.birthdaySource.subscribe((searchStream) => {
 
       this.searchStream = searchStream;
@@ -56,6 +43,7 @@ export class AppComponent implements OnInit {
           console.warn(err);
         });
     });
+
   }
 
   // callback for keyup event
