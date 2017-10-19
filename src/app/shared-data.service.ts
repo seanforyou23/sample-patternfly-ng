@@ -46,7 +46,7 @@ export class SharedDataService {
     this.birthdaySource.next(name);
   }
 
-  public getActiveBirthday(name: string): any {
+  public getActiveBirthday(name: string): Observable<string> {
     return this.activeBirthday;
   }
 

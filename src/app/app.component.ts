@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
   }
 
   // callback for keyup event
-  handleBirthdayChange(text: any) {
+  handleBirthdayChange(text: string) {
 
     let bday = this.dataService.getBirthday(text);
 

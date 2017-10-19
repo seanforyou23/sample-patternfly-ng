@@ -9,12 +9,14 @@ export class BirthdayUpdaterComponent implements OnInit {
 
   @Output() changeBirthday: EventEmitter<string> = new EventEmitter<string>();
 
+  userInput: string;
+
   constructor() {}
 
   ngOnInit() {}
 
-  onKey(event: any) {
-    this.changeBirthday.emit(event.target.value);
+  handler($event: KeyboardEvent) {
+    this.changeBirthday.emit(this.userInput);
   }
 
 }

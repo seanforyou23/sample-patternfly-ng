@@ -3,5 +3,6 @@
     class="form-control"
     type="text"
     placeholder="Enter Username (e.g. Red Hat)"
-    (keyup)="onKey($event)">
+    [(ngModel)]="userInput"
+    (ngModelChange)="handler($event)">
 </div>
