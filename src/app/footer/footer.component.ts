@@ -21,20 +21,7 @@ export class FooterComponent implements OnInit {
     this.today = new Date();
   }
 
-  ngOnInit() {
-
-    this.dataService.activeBirthday.subscribe((searchStream) => {
-
-      Promise.resolve(this.dataService.getBirthday(searchStream))
-        .then((data) => {
-          this.changeBirthday.emit(data);
-
-        }, (err) => {
-          console.warn(err);
-        });
-    });
-
-  }
+  ngOnInit() {}
 
   toLower(str): string {
     return str ? str.toLowerCase() : false;

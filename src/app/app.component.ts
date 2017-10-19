@@ -31,31 +31,23 @@ export class AppComponent implements OnInit {
 
     this.dataService.birthdaySource.subscribe((searchStream) => {
 
+      let bday = this.dataService.getBirthday(searchStream);
+
       this.searchStream = searchStream;
-
-      Promise.resolve(this.dataService.getBirthday(searchStream))
-        .then((result) => {
-
-            this.footer.activeBirthday = (result) ? result : null;
-            this.curBday = result;
-
-        }, (err) => {
-          console.warn(err);
-        });
+      this.curBday = bday;
+      this.footer.activeBirthday = bday;
     });
 
   }
 
   // callback for keyup event
   handleBirthdayChange(text: any) {
-    this.searchStream = text;
 
-    Promise.resolve(this.dataService.getBirthday(text))
-      .then((birthday) => {
-        this.curBday = (birthday) ? birthday : null;
-        this.footer.activeBirthday = (birthday) ? birthday : null;
-      }, (err) => {
-        console.warn(err);
-      });
+    let bday = this.dataService.getBirthday(text);
+
+    this.searchStream = text;
+    this.curBday = bday;
+    this.footer.activeBirthday = bday;
+
   }
 }
