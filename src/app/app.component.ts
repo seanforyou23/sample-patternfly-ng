@@ -1,4 +1,5 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
+import { InfoStatusCardConfig } from 'patternfly-ng';
 import { SharedDataService } from './shared-data.service';
 import { FooterComponent } from './footer/footer.component';
 
@@ -9,6 +10,20 @@ import { FooterComponent } from './footer/footer.component';
 })
 
 export class AppComponent implements OnInit {
+
+  card1Config: InfoStatusCardConfig = {
+    showTopBorder: true,
+    htmlContent: true,
+    title: 'TinyCore-local',
+    href: '//www.redhat.com/',
+    iconStyleClass: 'fa fa-shield',
+    info: [
+      'VM Name: aapdemo002',
+      'Host Name: localhost.localdomian',
+      'IP Address: 10.9.62.100',
+      'Power status: on'
+    ]
+  };
 
   @ViewChild(FooterComponent) footer;
 
