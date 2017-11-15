@@ -1,7 +1,9 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
+
 import { InfoStatusCardConfig } from 'patternfly-ng';
 import { SharedDataService } from './shared-data.service';
 import { FooterComponent } from './footer/footer.component';
+import { MY_APP_MODEL } from './custom-forms/form.model';
 
 @Component({
   selector: 'app-root',
@@ -35,6 +37,8 @@ export class AppComponent implements OnInit {
   constructor(private dataService: SharedDataService) {}
 
   ngOnInit() {
+
+    console.log('MY_APP_MODEL: ', MY_APP_MODEL);
 
     let users$ = this.dataService.getUsers();
 
