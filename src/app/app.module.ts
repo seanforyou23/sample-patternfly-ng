@@ -4,11 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 // for a particular module in a single location
 import { NgModule } from '@angular/core';
 // for custom form element binding
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // third party modules to use in the app
 import { DynamicFormsCoreModule } from '@ng-dynamic-forms/core';
 import { DynamicFormsBootstrapUIModule } from '@ng-dynamic-forms/ui-bootstrap';
 import { NotificationModule, CardModule } from 'patternfly-ng';
+import { TooltipModule } from 'ngx-bootstrap';
 // the root app component
 import { AppComponent } from './app.component';
 
@@ -31,8 +32,10 @@ import { BirthdayUpdaterComponent } from './birthday-updater/birthday-updater.co
     BrowserModule,
     CardModule,
     DynamicFormsCoreModule.forRoot(),
+    TooltipModule.forRoot(),
     DynamicFormsBootstrapUIModule,
     FormsModule,
+    ReactiveFormsModule,
     NotificationModule
   ],
   providers: [SharedDataService],

@@ -4,52 +4,76 @@
     Welcome to <img width="30" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="> {{title}}!
   </h1>
 
-  <div class="col-sm-12">
+  <div class="row">
+    <div class="col-sm-12">
 
-    <h2><a href="//github.com/udos86/ng-dynamic-forms" target="_blank">NG Dynamic Forms Dependencies</a></h2>
-    <ul>
-      <li>angular2-text-mask</li>
-    </ul>
+      <h2><a href="//github.com/udos86/ng-dynamic-forms" target="_blank">NG Dynamic Forms Dependencies</a></h2>
+      <ul>
+        <li>@ng-dynamic-forms/core: ^1.4.31</li>
+        <li>@ng-dynamic-forms/ui-bootstrap: ^1.4.31</li>
+        <li>angular2-text-mask: ^8.0.4</li>
+      </ul>
 
-<!--     <form [formGroup]="formGroup">
+      <form [formGroup]="formGroup">
 
-      <dynamic-bootstrap-form [group]="formGroup"
-      [model]="formModel"></dynamic-bootstrap-form>
+        <dynamic-bootstrap-form [group]="formGroup"
+        [model]="formModel"></dynamic-bootstrap-form>
 
-    </form> -->
+      </form>
+
+    </div>
 
   </div>
 
 
-  <div class="col-xs-12 col-sm-6">
-    <h2>Search Users</h2>
-    <app-birthday-updater (changeBirthday)="handleBirthdayChange($event)"></app-birthday-updater>
-    <span>{{users}}, etc.</span>
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h2><a href="//github.com/udos86/ng-dynamic-forms" target="_blank">Btn with Tooltip</a></h2>
+      <button type="button" class="btn btn-default filter-fields dropdown-toggle" dropdownToggle
+        tooltip="Filter by" placement="right">
+        Some btn text
+        <span class="caret"></span>
+      </button>
+
+    </div>
   </div>
 
 
-  <div class="col-xs-12 col-sm-6">
-    <h2>@Output: Results for: <span class="search-progress">{{searchStream}}</span></h2>
-    <p class="has-results" *ngIf="curBday">Birthday found for {{searchStream}}:
-      <strong>{{curBday}}</strong>
-    </p>
-    <p class="no-results" *ngIf="!curBday">No birthday found for this user.</p>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <h2>Search Users</h2>
+      <app-birthday-updater (changeBirthday)="handleBirthdayChange($event)"></app-birthday-updater>
+      <span>{{users}}, etc.</span>
+    </div>
+
+
+    <div class="col-xs-12 col-sm-6">
+      <h2>@Output: Results for: <span class="search-progress">{{searchStream}}</span></h2>
+      <p class="has-results" *ngIf="curBday">Birthday found for {{searchStream}}:
+        <strong>{{curBday}}</strong>
+      </p>
+      <p class="no-results" *ngIf="!curBday">No birthday found for this user.</p>
+    </div>
+
   </div>
 
+  <div class="row">
+    <div class="col-xs-6">
+      <pfng-toast-notification
+        [header]="'test header'"
+        [message]="'this is a notification'"
+        [showClose]="'true'"
+        [type]="'success'">
+      </pfng-toast-notification>
+    </div>
 
-  <div class="col-xs-6">
-    <pfng-toast-notification
-      [header]="'test header'"
-      [message]="'this is a notification'"
-      [showClose]="'true'"
-      [type]="'success'">
-    </pfng-toast-notification>
-  </div>
+    <div class="col-xs-6">
+      <pfng-info-status-card
+        [config]="card1Config">
+      </pfng-info-status-card>
+    </div>
 
-  <div class="col-xs-6">
-    <pfng-info-status-card
-      [config]="card1Config">
-    </pfng-info-status-card>
   </div>
 
 </div>

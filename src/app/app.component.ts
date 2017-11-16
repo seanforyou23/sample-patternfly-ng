@@ -1,18 +1,31 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { InfoStatusCardConfig } from 'patternfly-ng';
 import { SharedDataService } from './shared-data.service';
 import { FooterComponent } from './footer/footer.component';
-import { MY_APP_MODEL } from './custom-forms/form.model';
+
+// forms stuff
+import { MY_FORM_MODEL } from './custom-forms/form.model';
+import { FormGroup } from '@angular/forms';
+import {
+  DynamicFormControlModel,
+  DynamicFormService,
+  DynamicFormGroupModel
+} from '@ng-dynamic-forms/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class AppComponent implements OnInit {
+  // forms stuff
+  formModel: DynamicFormControlModel[] = MY_FORM_MODEL;
+  formGroup: FormGroup;
 
+  // card stuff
   card1Config: InfoStatusCardConfig = {
     showTopBorder: true,
     htmlContent: true,
@@ -27,6 +40,7 @@ export class AppComponent implements OnInit {
     ]
   };
 
+  // footer stuff
   @ViewChild(FooterComponent) footer;
 
   title = 'Birthday Lookup';
@@ -34,11 +48,14 @@ export class AppComponent implements OnInit {
   users: string;
   searchStream: string;
 
-  constructor(private dataService: SharedDataService) {}
+  constructor(
+    private dataService: SharedDataService,
+    private formService: DynamicFormService
+   ) {}
 
   ngOnInit() {
 
-    console.log('MY_APP_MODEL: ', MY_APP_MODEL);
+    this.formGroup = this.formService.createFormGroup(this.formModel);
 
     let users$ = this.dataService.getUsers();
 
