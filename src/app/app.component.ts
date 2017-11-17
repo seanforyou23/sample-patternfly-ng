@@ -10,7 +10,8 @@ import { FormGroup } from '@angular/forms';
 import {
   DynamicFormControlModel,
   DynamicFormService,
-  DynamicFormGroupModel
+  DynamicFormGroupModel,
+  DynamicInputModel
 } from '@ng-dynamic-forms/core';
 
 @Component({
@@ -21,9 +22,6 @@ import {
 })
 
 export class AppComponent implements OnInit {
-  // forms stuff
-  formModel: DynamicFormControlModel[] = MY_FORM_MODEL;
-  formGroup: FormGroup;
 
   // card stuff
   card1Config: InfoStatusCardConfig = {
@@ -48,16 +46,39 @@ export class AppComponent implements OnInit {
   users: string;
   searchStream: string;
 
+  // forms stuff
+  formModel: DynamicFormControlModel[] = MY_FORM_MODEL;
+  formGroup: FormGroup;
+
   constructor(
     private dataService: SharedDataService,
     private formService: DynamicFormService
    ) {}
 
   ngOnInit() {
-
+    // create a form group
     this.formGroup = this.formService.createFormGroup(this.formModel);
+    // get a reference to the nested form group by ID
+    const nestedFormGroup = this.formGroup.controls['group-firstName'] as FormGroup;
+    // get a reference to the model that represents your form group
+    const nestedFormGroupModel = this.formModel[0] as DynamicFormGroupModel;
+    // create a new form control to add
+    const newModel = new DynamicInputModel({
+      id: 'input-address',
+      label: 'Address',
+      maxLength: 42,
+      hint: 'Enter your home address',
+      placeholder: '100 Grove Drive'
+    });
 
-    let users$ = this.dataService.getUsers();
+    // add a new input after a second
+    setTimeout(() => {
+      // console.log(this.formService.removeFormGroupControl(1, this.formGroup, newGroupModel));
+      this.formService.addFormGroupControl(nestedFormGroup, nestedFormGroupModel, newModel);
+      console.log(nestedFormGroup);
+    }, 1000);
+
+    const users$ = this.dataService.getUsers();
 
     users$.subscribe((observable) => {
       this.users = observable.slice(0, 3).join(', ');
@@ -67,7 +88,7 @@ export class AppComponent implements OnInit {
 
     this.dataService.birthdaySource.subscribe((searchStream) => {
 
-      let bday = this.dataService.getBirthday(searchStream);
+      const bday = this.dataService.getBirthday(searchStream);
 
       this.searchStream = searchStream;
       this.curBday = bday;
@@ -79,7 +100,7 @@ export class AppComponent implements OnInit {
   // callback for keyup event
   handleBirthdayChange(text: string) {
 
-    let bday = this.dataService.getBirthday(text);
+    const bday = this.dataService.getBirthday(text);
 
     this.searchStream = text;
     this.curBday = bday;
