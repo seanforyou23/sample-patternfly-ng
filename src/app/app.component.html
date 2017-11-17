@@ -14,12 +14,31 @@
         <li>angular2-text-mask: ^8.0.4</li>
       </ul>
 
+      <!-- very basic example -->
+      <!--<form [formGroup]="formGroup">-->
+        <!--<dynamic-bootstrap-form [group]="formGroup"-->
+                                <!--[model]="formModel"></dynamic-bootstrap-form>-->
+      <!--</form>-->
+
+      <!-- form groups example -->
+      <!--<form [formGroup]="formGroup">-->
+        <!--<dynamic-bootstrap-form-->
+          <!--[group]="formGroup"-->
+          <!--[model]="formModel">-->
+          <!--<ng-template modelId="input-firstName">-->
+            <!--<p>Some custom markup</p>-->
+          <!--</ng-template>-->
+        <!--</dynamic-bootstrap-form>-->
+      <!--</form>-->
+
+      <!-- form control example -->
       <form [formGroup]="formGroup">
-
-        <dynamic-bootstrap-form [group]="formGroup"
-        [model]="formModel"></dynamic-bootstrap-form>
-
+        <dynamic-bootstrap-form-control
+          *ngFor="let controlModel of formModel"
+          [group]="formGroup"
+          [model]="controlModel"></dynamic-bootstrap-form-control>
       </form>
+
 
     </div>
 
@@ -30,9 +49,9 @@
     <div class="col-sm-12">
 
       <h2><a href="//github.com/udos86/ng-dynamic-forms" target="_blank">Btn with Tooltip</a></h2>
-      <button type="button" class="btn btn-default filter-fields dropdown-toggle" dropdownToggle
-        tooltip="Filter by" placement="right">
-        Some btn text
+
+      <button type="button" class="btn btn-default" tooltip="Filter by" placement="bottom">
+        ngx-bootstrap tooltip
         <span class="caret"></span>
       </button>
 
