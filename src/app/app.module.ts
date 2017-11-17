@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 // decorator allowing you to place all imports, declarations, and bootstrap files
 // for a particular module in a single location
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 // for custom form element binding
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // third party modules to use in the app
@@ -39,7 +39,8 @@ import { BirthdayUpdaterComponent } from './birthday-updater/birthday-updater.co
     NotificationModule
   ],
   providers: [SharedDataService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 
 // referenced from main.ts
