@@ -15,26 +15,29 @@
       </ul>
 
       <!-- very basic example -->
-      <!--<form [formGroup]="formGroup">-->
-        <!--<dynamic-bootstrap-form [group]="formGroup"-->
-                                <!--[model]="formModel"></dynamic-bootstrap-form>-->
-      <!--</form>-->
+      <h3>Basic Form</h3>
+      <form [formGroup]="basicForm">
+        <dynamic-bootstrap-form [group]="basicForm"
+                                [model]="basicFormModel"></dynamic-bootstrap-form>
+      </form>
 
       <!-- form groups example -->
-      <!--<form [formGroup]="formGroup">-->
-        <!--<dynamic-bootstrap-form-->
-          <!--[group]="formGroup"-->
-          <!--[model]="formModel">-->
-          <!--<ng-template modelId="input-firstName">-->
-            <!--<p>Some custom markup</p>-->
-          <!--</ng-template>-->
-        <!--</dynamic-bootstrap-form>-->
-      <!--</form>-->
+      <h3>Basic Form Group</h3>
+      <form [formGroup]="formGroup">
+        <dynamic-bootstrap-form
+          [group]="formGroup"
+          [model]="formGroupModel">
+          <ng-template modelId="input-firstName">
+            <p>Some custom markup</p>
+          </ng-template>
+        </dynamic-bootstrap-form>
+      </form>
 
       <!-- form control example -->
+      <h3>Form Control Group</h3>
       <form [formGroup]="formGroup">
         <dynamic-bootstrap-form-control
-          *ngFor="let controlModel of formModel"
+          *ngFor="let controlModel of formGroupModel"
           [group]="formGroup"
           [model]="controlModel"></dynamic-bootstrap-form-control>
       </form>

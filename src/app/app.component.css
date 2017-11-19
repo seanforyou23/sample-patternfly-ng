@@ -3,6 +3,12 @@ h2 {
   padding-bottom: 6px;
 }
 
+h3 {
+  border-bottom: 1px dashed blue;
+  padding-bottom: 4px;
+  text-align: right;
+}
+
 [class*="col-"] {
   border: 1px solid #eee;
   min-height: 18em;

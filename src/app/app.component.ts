@@ -5,7 +5,10 @@ import { SharedDataService } from './shared-data.service';
 import { FooterComponent } from './footer/footer.component';
 
 // forms stuff
-import { MY_FORM_MODEL } from './custom-forms/form.model';
+import {
+  MY_BASIC_FORM_MODEL,
+  MY_GROUP_FORM_MODEL
+} from './custom-forms/form.model';
 import { FormGroup } from '@angular/forms';
 import {
   DynamicFormControlModel,
@@ -47,8 +50,10 @@ export class AppComponent implements OnInit {
   searchStream: string;
 
   // forms stuff
-  formModel: DynamicFormControlModel[] = MY_FORM_MODEL;
+  basicFormModel: DynamicFormControlModel[] = MY_BASIC_FORM_MODEL;
+  formGroupModel: DynamicFormControlModel[] = MY_GROUP_FORM_MODEL;
   formGroup: FormGroup;
+  basicForm: FormGroup;
 
   constructor(
     private dataService: SharedDataService,
@@ -57,11 +62,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // create a form group
-    this.formGroup = this.formService.createFormGroup(this.formModel);
+    this.formGroup = this.formService.createFormGroup(this.formGroupModel);
+    this.basicForm = this.formService.createFormGroup(this.basicFormModel);
     // get a reference to the nested form group by ID
     const nestedFormGroup = this.formGroup.controls['group-firstName'] as FormGroup;
     // get a reference to the model that represents your form group
-    const nestedFormGroupModel = this.formModel[0] as DynamicFormGroupModel;
+    const nestedFormGroupModel = this.formGroupModel[0] as DynamicFormGroupModel;
     // create a new form control to add
     const newModel = new DynamicInputModel({
       id: 'input-address',
@@ -73,7 +79,6 @@ export class AppComponent implements OnInit {
 
     // add a new input after a second
     setTimeout(() => {
-      // console.log(this.formService.removeFormGroupControl(1, this.formGroup, newGroupModel));
       this.formService.addFormGroupControl(nestedFormGroup, nestedFormGroupModel, newModel);
       console.log(nestedFormGroup);
     }, 1000);
