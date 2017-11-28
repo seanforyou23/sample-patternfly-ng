@@ -3,28 +3,37 @@ import {
   DynamicInputModel,
   DynamicRadioGroupModel,
   DynamicCheckboxModel,
-  DynamicFormGroupModel
+  DynamicFormGroupModel,
+  DynamicFormArrayModel
 } from '@ng-dynamic-forms/core';
 
 export const MY_BASIC_FORM_MODEL: DynamicFormControlModel[] = [
   // basic form model with form controls
   new DynamicInputModel({
-    id: "sampleInput",
-    label: "Sample Input",
+    id: 'sampleInput',
+    label: 'Sample Input',
     maxLength: 42,
-    placeholder: "Sample input"
+    hint: 'my hint prop',
+    placeholder: 'Sample input'
+  }, {
+    element: {
+      hint: 'foo'
+    },
+    grid: {
+      hint: 'bar'
+    }
   }),
   new DynamicRadioGroupModel<string>({
-    id: "sampleRadioGroup",
-    label: "Sample Radio Group",
+    id: 'sampleRadioGroup',
+    label: 'Sample Radio Group',
     options: [
-      {label: "Option 1", value: "option-1"},
-      {label: "Option 2", value: "option-2"},
-      {label: "Option 3", value: "option-3"}
+      {label: 'Option 1', value: 'option-1'},
+      {label: 'Option 2', value: 'option-2'},
+      {label: 'Option 3', value: 'option-3'}
     ],
-    value: "option-3"
+    value: 'option-3'
   }),
-  new DynamicCheckboxModel({id: "sampleCheckbox", label: "I do agree"})
+  new DynamicCheckboxModel({id: 'sampleCheckbox', label: 'I do agree'})
 ];
 
 export const MY_GROUP_FORM_MODEL: DynamicFormControlModel[] = [
@@ -68,5 +77,20 @@ export const MY_GROUP_FORM_MODEL: DynamicFormControlModel[] = [
         hint: 'Enter Your Last Name Suffix here'
       })
     ]
+  })
+];
+
+export const MY_ARRAY_FORM_MODEL: DynamicFormArrayModel[] = [
+  new DynamicFormArrayModel({
+    id: 'myFormArray',
+    initialCount: 2,
+    groupFactory: () => {
+      return [
+        new DynamicInputModel({
+          id: 'myFormArrayId',
+          label: 'This is an array form label'
+        })
+      ];
+    }
   })
 ];

@@ -1,20 +1,22 @@
 import { Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { InfoStatusCardConfig } from 'patternfly-ng';
+import { InfoStatusCardConfig, NotificationService, NotificationType, Notification } from 'patternfly-ng';
 import { SharedDataService } from './shared-data.service';
 import { FooterComponent } from './footer/footer.component';
 
 // forms stuff
 import {
   MY_BASIC_FORM_MODEL,
-  MY_GROUP_FORM_MODEL
+  MY_GROUP_FORM_MODEL,
+  MY_ARRAY_FORM_MODEL
 } from './custom-forms/form.model';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormArray } from '@angular/forms';
 import {
   DynamicFormControlModel,
   DynamicFormService,
   DynamicFormGroupModel,
-  DynamicInputModel
+  DynamicInputModel,
+  DynamicFormArrayModel
 } from '@ng-dynamic-forms/core';
 
 @Component({
@@ -25,6 +27,8 @@ import {
 })
 
 export class AppComponent implements OnInit {
+
+  notifications: Notification[];
 
   // card stuff
   card1Config: InfoStatusCardConfig = {
@@ -52,18 +56,29 @@ export class AppComponent implements OnInit {
   // forms stuff
   basicFormModel: DynamicFormControlModel[] = MY_BASIC_FORM_MODEL;
   formGroupModel: DynamicFormControlModel[] = MY_GROUP_FORM_MODEL;
+  formArrayModel: DynamicFormArrayModel[] = MY_ARRAY_FORM_MODEL;
   formGroup: FormGroup;
   basicForm: FormGroup;
+  arrayForm: FormGroup;
+  formArrayControl: FormArray;
 
   constructor(
     private dataService: SharedDataService,
-    private formService: DynamicFormService
-   ) {}
+    private formService: DynamicFormService,
+    private notificationService: NotificationService
+   ) {
+    notificationService.setDelay(2000);
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // create a form group
     this.formGroup = this.formService.createFormGroup(this.formGroupModel);
     this.basicForm = this.formService.createFormGroup(this.basicFormModel);
+    this.arrayForm = this.formService.createFormGroup(this.formArrayModel);
+
+    this.formArrayControl = this.formGroup.get('myFormArray') as FormArray;
+    // this.formArrayModel = this.formService.findById('myFormArray', this.formArrayModel) as DynamicFormArrayModel;
+
     // get a reference to the nested form group by ID
     const nestedFormGroup = this.formGroup.controls['group-firstName'] as FormGroup;
     // get a reference to the model that represents your form group
@@ -71,16 +86,15 @@ export class AppComponent implements OnInit {
     // create a new form control to add
     const newModel = new DynamicInputModel({
       id: 'input-address',
-      label: 'Address',
+      label: 'Address (Dynamically added via addFormGroupControl)',
       maxLength: 42,
       hint: 'Enter your home address',
-      placeholder: '100 Grove Drive'
+      placeholder: 'Dynamically added Input'
     });
 
     // add a new input after a second
     setTimeout(() => {
       this.formService.addFormGroupControl(nestedFormGroup, nestedFormGroupModel, newModel);
-      console.log(nestedFormGroup);
     }, 1000);
 
     const users$ = this.dataService.getUsers();
@@ -99,8 +113,30 @@ export class AppComponent implements OnInit {
       this.curBday = bday;
       this.footer.activeBirthday = bday;
     });
+    // launch a notification
 
+    setTimeout(() => {
+      this.notificationService.message(
+        NotificationType.WARNING,
+        'Default Header.',
+        'Default Message.',
+        false,
+        null,
+        null
+      );
+    }, 2000);
+
+    // attached notifications to property for the view
+    this.notifications = this.notificationService.getNotifications();
   }
+
+  // addItem() {
+  //   this.formService.addFormArrayGroup(this.formArrayControl, this.formArrayModel);
+  // }
+  //
+  // clear() {
+  //   this.formService.clearFormArray(this.formArrayControl, this.formArrayModel);
+  // }
 
   // callback for keyup event
   handleBirthdayChange(text: string) {

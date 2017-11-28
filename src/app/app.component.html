@@ -14,15 +14,23 @@
         <li>angular2-text-mask: ^8.0.4</li>
       </ul>
 
-      <!-- very basic example -->
-      <h3>Basic Form</h3>
+      <h3>Basic Form Example</h3>
       <form [formGroup]="basicForm">
         <dynamic-bootstrap-form [group]="basicForm"
                                 [model]="basicFormModel"></dynamic-bootstrap-form>
       </form>
 
-      <!-- form groups example -->
-      <h3>Basic Form Group</h3>
+      <h3>Form Array Example</h3>
+      <form [formGroup]="arrayForm">
+        <dynamic-bootstrap-form
+          [group]="arrayForm"
+          [model]="formArrayModel">
+          <button type="button" (click)="addItem()">Add item</button>
+          <button type="button" (click)="clear()">Remove all items</button>
+        </dynamic-bootstrap-form>
+      </form>
+
+      <h3>Basic Form Group Example</h3>
       <form [formGroup]="formGroup">
         <dynamic-bootstrap-form
           [group]="formGroup"
@@ -33,15 +41,13 @@
         </dynamic-bootstrap-form>
       </form>
 
-      <!-- form control example -->
-      <h3>Form Control Group</h3>
+      <h3>Form Control Group Example</h3>
       <form [formGroup]="formGroup">
         <dynamic-bootstrap-form-control
           *ngFor="let controlModel of formGroupModel"
           [group]="formGroup"
           [model]="controlModel"></dynamic-bootstrap-form-control>
       </form>
-
 
     </div>
 
@@ -83,11 +89,16 @@
   <div class="row">
     <div class="col-xs-6">
       <pfng-toast-notification
-        [header]="'test header'"
-        [message]="'this is a notification'"
+        [header]="'A single notification header'"
+        [message]="'This is a single notification'"
         [showClose]="'true'"
         [type]="'success'">
       </pfng-toast-notification>
+
+      <pfng-toast-notification-list
+        [notifications]="notifications"
+        [showClose]="false">
+      </pfng-toast-notification-list>
     </div>
 
     <div class="col-xs-6">
