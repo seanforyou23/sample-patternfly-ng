@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
     private formService: DynamicFormService,
     private notificationService: NotificationService
    ) {
-    notificationService.setDelay(2000);
+    notificationService.setDelay(1500);
   }
 
   ngOnInit(): void {
@@ -114,20 +114,30 @@ export class AppComponent implements OnInit {
       this.footer.activeBirthday = bday;
     });
     // launch a notification
-
     setTimeout(() => {
       this.notificationService.message(
         NotificationType.WARNING,
-        'Default Header.',
-        'Default Message.',
+        'Notification Header.',
+        'Notification Message.',
         false,
         null,
         null
       );
-    }, 2000);
+    }, 1200);
 
     // attached notifications to property for the view
     this.notifications = this.notificationService.getNotifications();
+  }
+
+  launchNotification() {
+    this.notificationService.message(
+      NotificationType.WARNING,
+      'Default Header.',
+      'Default Message.',
+      false,
+      null,
+      null
+    );
   }
 
   // addItem() {

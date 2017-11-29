@@ -19,7 +19,6 @@ import { FooterComponent } from './footer/footer.component';
 import { SharedDataService } from './shared-data.service';
 import { BirthdayUpdaterComponent } from './birthday-updater/birthday-updater.component';
 
-
 @NgModule({
   // declarations is where one specifies modules for dependency injection
   declarations: [
