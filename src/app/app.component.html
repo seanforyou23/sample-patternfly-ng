@@ -5,6 +5,32 @@
   </h1>
 
   <div class="row">
+    <div class="col-xs-6">
+      <pfng-toast-notification
+        [header]="'A single notification header'"
+        [message]="'This is a single notification'"
+        [showClose]="'true'"
+        [type]="'success'">
+      </pfng-toast-notification>
+
+      <pfng-toast-notification-list
+        [notifications]="notifications"
+        [showClose]="false">
+      </pfng-toast-notification-list>
+
+      <br>
+      <button (click)="launchNotification()">Launch Notification Manually</button>
+    </div>
+
+    <div class="col-xs-6">
+      <pfng-info-status-card
+        [config]="card1Config">
+      </pfng-info-status-card>
+    </div>
+
+  </div>
+
+  <div class="row">
     <div class="col-sm-12">
 
       <h2><a href="//github.com/udos86/ng-dynamic-forms" target="_blank">NG Dynamic Forms Dependencies</a></h2>
@@ -86,31 +112,7 @@
 
   </div>
 
-  <div class="row">
-    <div class="col-xs-6">
-      <pfng-toast-notification
-        [header]="'A single notification header'"
-        [message]="'This is a single notification'"
-        [showClose]="'true'"
-        [type]="'success'">
-      </pfng-toast-notification>
 
-      <pfng-toast-notification-list
-        [notifications]="notifications"
-        [showClose]="false">
-      </pfng-toast-notification-list>
-
-      <br>
-      <button (click)="launchNotification()">Launch Notification Manually</button>
-    </div>
-
-    <div class="col-xs-6">
-      <pfng-info-status-card
-        [config]="card1Config">
-      </pfng-info-status-card>
-    </div>
-
-  </div>
 
 </div>
 
