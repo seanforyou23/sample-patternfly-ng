@@ -29,7 +29,7 @@ export class SharedDataService {
   ];
 
   public getBirthday(userName): string {
-    let foundUser = this.users.filter((user) => {
+    const foundUser = this.users.filter((user) => {
       return user.name === userName;
     })[0];
 
@@ -38,8 +38,8 @@ export class SharedDataService {
 
   public getUsers(): Observable<string[]> {
     return Observable.of(
-        this.users.reduce((acc, el) => {acc.push(el.name); return acc;}, [])
-      )
+        this.users.reduce((acc, el) => {acc.push(el.name); return acc; }, [])
+      );
   }
 
   public setActiveBirthday(name: string): void {
