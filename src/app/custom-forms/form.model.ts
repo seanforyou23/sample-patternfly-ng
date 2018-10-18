@@ -31,7 +31,7 @@ export const MY_BASIC_FORM_MODEL: DynamicFormControlModel[] = [
       {label: 'Option 2', value: 'option-2'},
       {label: 'Option 3', value: 'option-3'}
     ],
-    value: 'option-3'
+    value: 'option-1'
   }),
   new DynamicCheckboxModel({id: 'sampleCheckbox', label: 'I do agree'})
 ];

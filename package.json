@@ -27,7 +27,7 @@
     "core-js": "^2.4.1",
     "ngx-bootstrap": "^1.9.3",
     "patternfly": "^3.28.0",
-    "patternfly-ng": "^0.13.1",
+    "patternfly-ng": "file:../seanforyou23-patternfly-ng/patternfly-ng-0.0.0-semantically-released.tgz",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },
@@ -50,6 +50,6 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.3.3"
+    "typescript": "^2.4.2"
   }
 }

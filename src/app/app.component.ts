@@ -1,6 +1,8 @@
-import { Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Http } from '@angular/http';
 
-import { InfoStatusCardConfig, NotificationService, NotificationType, Notification } from 'patternfly-ng';
+import { NotificationType, Notification } from 'patternfly-ng';
+import { RandomService, NotificationService } from './custom-notification-service/notification-service';
 import { SharedDataService } from './shared-data.service';
 import { FooterComponent } from './footer/footer.component';
 
@@ -23,7 +25,9 @@ import {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [RandomService]
 })
 
 export class AppComponent implements OnInit {
@@ -31,7 +35,7 @@ export class AppComponent implements OnInit {
   notifications: Notification[];
 
   // card stuff
-  card1Config: InfoStatusCardConfig = {
+  card1Config = {
     showTopBorder: true,
     htmlContent: true,
     title: 'TinyCore-local',
@@ -65,12 +69,27 @@ export class AppComponent implements OnInit {
   constructor(
     private dataService: SharedDataService,
     private formService: DynamicFormService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private numberService: RandomService,
+    private http: Http,
+    private cd: ChangeDetectorRef
    ) {
-    notificationService.setDelay(1500);
+    notificationService.setDelay(1000);
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.notificationService.message(
+        NotificationType.WARNING,
+        'Timeout Header.',
+        'Timeout Message. (ngOnInit)',
+        false,
+        null,
+        null
+      );
+    }, 2000);
+
+    // console.log(this.numberService.getPi());
     // create a form group
     this.formGroup = this.formService.createFormGroup(this.formGroupModel);
     this.basicForm = this.formService.createFormGroup(this.basicFormModel);
@@ -114,30 +133,24 @@ export class AppComponent implements OnInit {
       this.footer.activeBirthday = bday;
     });
     // launch a notification
-    setTimeout(() => {
-      this.notificationService.message(
-        NotificationType.WARNING,
-        'Notification Header.',
-        'Notification Message.',
-        false,
-        null,
-        null
-      );
-    }, 1200);
+
 
     // attached notifications to property for the view
     this.notifications = this.notificationService.getNotifications();
   }
 
   launchNotification() {
-    this.notificationService.message(
-      NotificationType.WARNING,
-      'Default Header.',
-      'Default Message.',
-      false,
-      null,
-      null
-    );
+    this.http.get('https://jsonplaceholder.typicode.com/photos').subscribe((response) => {
+      this.notificationService.message(
+        NotificationType.WARNING,
+        'Http Response Header.',
+        'Http Response Message.',
+        false,
+        null,
+        null
+      );
+      // this.cd.detectChanges();
+    });
   }
 
   // addItem() {
